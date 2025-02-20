@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_provider/model_classes/Student.dart';
 import 'package:flutter_provider/pages/home_page.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +18,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home:  MultiProvider(providers: [
+        ChangeNotifierProvider<Student>(create: (context) => Student(name: 'John Doe', rollNo: 1, fee: 1000.0)),
+      ], child: const MyHomePage(title: 'Flutter Demo Home Page')),
+
     );
   }
 }
